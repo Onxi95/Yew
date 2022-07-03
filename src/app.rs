@@ -30,11 +30,13 @@ pub fn app() -> Html {
                 <p>{"No message for you!"}</p>
             }
             <ul>
-                {tasks.iter().map(|task| html!{
-                        <li>{task}</li>
-                    }
-                ).collect::<Html>()}
+                {list_to_html(tasks)}
             </ul>
         </>
     }
+}
+
+
+fn list_to_html<T: std::fmt::Display>(list: Vec<T>) -> Vec<Html> {
+    list.iter().map(|task| html! {<li>{task}</li>}).collect()
 }
