@@ -30,8 +30,9 @@ pub fn app() -> Html {
 
     log!(serde_json::to_string_pretty(&test).unwrap());
     html! {
+        <>
         <div class={styles}>
-            <h1>{"Hello!"}</h1>
+            <h1 class="text-3xl">{"Hello!"}</h1>
             if let Some(message) = message {
                 <p>{message}</p>
             } else {
@@ -41,6 +42,10 @@ pub fn app() -> Html {
                 {list_to_html(tasks)}
             </ul>
         </div>
+            <button class="text-red-500">
+            {"click me"}
+        </button>
+        </>
     }
 }
 
