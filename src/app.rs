@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 use yew::prelude::*;
 use gloo::console::log;
+use stylist::{yew::styled_component, style};
 
 #[derive(Serialize, Deserialize )]
 struct Test {
@@ -8,7 +9,7 @@ struct Test {
     lang: String,
 }
 
-#[function_component(App)]
+#[styled_component(App)]
 pub fn app() -> Html {
     let name = String::from("Paweł");
     let test = Test{
@@ -16,13 +17,20 @@ pub fn app() -> Html {
         lang: "Rust".to_owned()
     };
 
+    let styles = style!(
+        r#"
+        background-color: #000000;
+        color: #ffffff;
+        "#
+    ).expect("Cannot render styles!");
+
     let message: Option<&str> = Some("This is a message for you!");
 
     let tasks: Vec<&str> = vec!["make a dinner", "hate PHP"];
 
     log!(serde_json::to_string_pretty(&test).unwrap());
     html! {
-        <>
+        <div class={styles}>
             <h1>{"Hello!"}</h1>
             if let Some(message) = message {
                 <p>{message}</p>
@@ -32,7 +40,7 @@ pub fn app() -> Html {
             <ul>
                 {list_to_html(tasks)}
             </ul>
-        </>
+        </div>
     }
 }
 
