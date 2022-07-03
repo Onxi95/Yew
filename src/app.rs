@@ -18,6 +18,7 @@ pub fn app() -> Html {
 
     let message: Option<&str> = Some("This is a message for you!");
 
+    let tasks: Vec<&str> = vec!["make a dinner", "hate PHP"];
 
     log!(serde_json::to_string_pretty(&test).unwrap());
     html! {
@@ -28,6 +29,12 @@ pub fn app() -> Html {
             } else {
                 <p>{"No message for you!"}</p>
             }
+            <ul>
+                {tasks.iter().map(|task| html!{
+                        <li>{task}</li>
+                    }
+                ).collect::<Html>()}
+            </ul>
         </>
     }
 }
