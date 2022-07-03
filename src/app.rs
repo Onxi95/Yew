@@ -16,9 +16,18 @@ pub fn app() -> Html {
         lang: "Rust".to_owned()
     };
 
+    let message: Option<&str> = Some("This is a message for you!");
+
 
     log!(serde_json::to_string_pretty(&test).unwrap());
     html! {
-        <h1>{"Hello!"}</h1>
+        <>
+            <h1>{"Hello!"}</h1>
+            if let Some(message) = message {
+                <p>{message}</p>
+            } else {
+                <p>{"No message for you!"}</p>
+            }
+        </>
     }
 }
