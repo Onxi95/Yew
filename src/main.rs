@@ -1,5 +1,7 @@
 mod app;
 
+use app::App;
+
 fn main() {
-    yew::start_app::<app::App>();
+    yew::Renderer::<App>::new().render();
 }
